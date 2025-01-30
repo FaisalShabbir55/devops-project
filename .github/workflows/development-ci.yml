@@ -1,0 +1,25 @@
+name: Development CI
+
+on:
+  pull_request:
+    branches:
+      - develop
+    paths:
+      - 'feature/*'
+
+jobs:
+  lint-build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+        
+      - name: Install Dependencies
+        run: npm install
+        
+      - name: Linting
+        run: npm run lint
+
+      - name: Build
+        run: npm run build
