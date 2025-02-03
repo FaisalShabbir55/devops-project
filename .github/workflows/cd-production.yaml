@@ -19,9 +19,10 @@ jobs:
         with:
           path: "./dist"
           name: "build-artifact-production"
+
   deploy-production-job:
-    needs: "build-production-job"
-    environment: "production-env"
+    needs: build-production-job
+    environment: production-env
     permissions:
       pages: write
       id-token: write
@@ -31,7 +32,5 @@ jobs:
         uses: actions/deploy-pages@v4
         with:
           artifact_name: "build-artifact-production"
-          token: ${{ github.token }}
-    environment:
-      name: production-env
-      url: "https://your-production-url.com"
+          token: ${{ secrets.GITHUB_TOKEN }}  # ✅ Fixed token reference
+
