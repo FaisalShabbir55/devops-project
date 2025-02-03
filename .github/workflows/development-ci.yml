@@ -21,5 +21,6 @@ jobs:
       - name: Linting
         run: npm run lint
 
-      - name: Build
-        run: npm run build
+      - name: Build Website With Parcel 
+        run: |
+          npx parcel build "./src/index.html" --dist-dir "./dev" --public-url "./"
